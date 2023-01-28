@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+		PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- 사용자 정의 별명 지정-->
+	<typeAliases>
+		<typeAlias alias="UserDTO" type="com.fastcampus.comicbookrental.dto.UserDTO"/>
+<!--		<typeAlias alias="ComicbookDTO" type="com.fastcampus.comicbookrental.dto.ComicbookDTO"/>-->
+<!--		<typeAlias alias="SearchCondition" type="com.fastcampus.comicbookrental.dto.SearchCondition"/>-->
+	</typeAliases>
+</configuration>
