@@ -56,6 +56,7 @@
         UPDATE comicbook
         SET   title = #{title}
           , writer = #{writer}
+          , publisher = #{publisher}
           , up_date = now()
         WHERE cno = #{cno}
     </update>

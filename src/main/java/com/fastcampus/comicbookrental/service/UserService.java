@@ -23,10 +23,13 @@ public class UserService {
             int rowCnt = userDAO.insertUser(user);
 
             if(rowCnt!=FAIL) {
-                return "registerInfo";
+                return "redirect:/";
             }
+            //개선해야하는 사항
+            //1. 로그인상태유지하기
+            //2. 뒤로가기하면 정보지운상태보여주기
+            //3. id랑 이메일 중복체크하기
         }
-
         return "registerForm";
     }
     //회원 삭제

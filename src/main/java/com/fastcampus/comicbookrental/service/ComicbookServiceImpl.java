@@ -29,7 +29,7 @@ public class ComicbookServiceImpl implements ComicbookService {
 
     @Override
     public int write(ComicbookDTO comicbookDTO, String isAdmin) throws Exception {
-
+        if(!isAdmin.equals("true")) throw new Exception();
         //예외처리 확인을 위한 예외발생
 //        throw new Exception("write fail test");
         return comicbookDAO.insert(comicbookDTO);

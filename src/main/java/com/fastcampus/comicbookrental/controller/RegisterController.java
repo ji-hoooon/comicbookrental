@@ -40,7 +40,7 @@ public class RegisterController {
         return "registerForm"; // WEB-INF/views/registerForm.jsp
     }
 
-    @PostMapping("/add")
+    @PostMapping("/save")
     public String save(@Valid UserDTO user, BindingResult result, Model m) throws Exception {
         System.out.println("result="+result);
         System.out.println("user="+user);

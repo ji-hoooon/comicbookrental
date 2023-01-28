@@ -79,9 +79,12 @@
     <li><a href="<c:url value='/'/>">Home</a></li>
     <li><a href="<c:url value='/comicbook/list'/>">Comic</a></li>
     <li><a href="<c:url value='${loginOutLink}'/>">${loginOut}</a></li>
-    <li><a href="<c:url value='/register/add'/>">Sign in</a></li>
-    <li><a href="<c:url value='/admin'/>">Admin</a></li>
-  </ul>
+    <c:if test="${loginId==''}">
+      <li><a href="<c:url value='/register/add'/>">Sign in</a></li>
+    </c:if>
+    <c:if test="${isAdmin=='true'}">
+      <li><a href="<c:url value='/admin'/>">Admin</a></li>
+    </c:if>  </ul>
 </div>
 <script>
   let msg = "${msg}";
@@ -100,12 +103,9 @@
     <c:if test="${mode eq 'new'}">
       <button type="button" id="writeBtn" class="btn btn-write"><i class="fa fa-pencil"></i> 등록하기</button>
     </c:if>
-    <c:if test="${mode ne 'new'}">
+    <c:if test="${mode ne 'new'}" >
+      <c:if test="${isAdmin eq 'true'}">
       <button type="button" id="writeNewBtn" class="btn btn-write"><i class="fa fa-pencil"></i> 만화책 추가</button>
-    </c:if>
-
-    <c:if test="${isAdmin eq 'true'}">
-      <c:if test="${mode ne 'new'}">
       <button type="button" id="modifyBtn" class="btn btn-modify" ><i class="fa fa-edit"></i> 수정</button>
       <button type="button" id="removeBtn" class="btn btn-remove"><i class="fa fa-trash"></i> 삭제</button>
       </c:if>

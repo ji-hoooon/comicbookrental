@@ -178,8 +178,12 @@
     <li><a href="<c:url value='/'/>">Home</a></li>
     <li><a href="<c:url value='/comicbook/list'/>">Comic</a></li>
     <li><a href="<c:url value='${loginOutLink}'/>">${loginOut}</a></li>
-    <li><a href="<c:url value='/register/add'/>">Sign in</a></li>
+    <c:if test="${loginId==''}">
+      <li><a href="<c:url value='/register/add'/>">Sign in</a></li>
+    </c:if>
+    <c:if test="${isAdmin=='true'}">
     <li><a href="<c:url value='/admin'/>">Admin</a></li>
+    </c:if>
   </ul>
 </div>
 <script>
@@ -205,7 +209,9 @@
         <input type="text" name="keyword" class="search-input" type="text" value="${ph.sc.keyword}" placeholder="검색어를 입력해주세요">
         <input type="submit" class="search-button" value="검색">
       </form>
-      <button id="writeBtn" class="btn-write" onclick="location.href='<c:url value="/comicbook/write"/>'"><i class="fa fa-pencil"></i> 등록</button>
+    <c:if test="${isAdmin eq 'true'} && ${mode ne 'new'}">
+    <button id="writeBtn" class="btn-write" onclick="location.href='<c:url value="/comicbook/write"/>'"><i class="fa fa-pencil"></i> 만화책 추가</button>
+    </c:if>
     </div>
 
     <table>
