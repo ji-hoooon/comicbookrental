@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import java.util.Date;
 
 @Data
-@AllArgsConstructor
 public class UserDTO {
     private Integer uno;
     private String id;

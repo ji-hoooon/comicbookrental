@@ -76,11 +76,17 @@ public class LoginController {
             user = userDao.selectUser(id);
             Date date = new Date();
             if(date.getYear()- user.getBirth().getYear()>=20){
-                session.setAttribute("adult", true);
+                session.setAttribute("isAdult", "true");
             }else{
-                session.setAttribute("adult", false);
+                session.setAttribute("isAdult", "false");
             }
-            System.out.println("성인여부 "+session.getAttribute("adult"));
+            if(user.isIsadmin()==true)
+                session.setAttribute("isAdmin", "true");
+            else{
+                session.setAttribute("isAdmin", "false");
+            }
+            System.out.println("관리자여부" + session.getAttribute("isAdmin"));
+            System.out.println("성인여부 "+session.getAttribute("isAdult"));
         } catch (Exception e) {
             e.printStackTrace();
             return false;

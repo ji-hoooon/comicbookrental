@@ -6,7 +6,7 @@
 	<!-- 사용자 정의 별명 지정-->
 	<typeAliases>
 		<typeAlias alias="UserDTO" type="com.fastcampus.comicbookrental.dto.UserDTO"/>
-<!--		<typeAlias alias="ComicbookDTO" type="com.fastcampus.comicbookrental.dto.ComicbookDTO"/>-->
-<!--		<typeAlias alias="SearchCondition" type="com.fastcampus.comicbookrental.dto.SearchCondition"/>-->
+		<typeAlias alias="ComicbookDTO" type="com.fastcampus.comicbookrental.dto.ComicbookDTO"/>
+		<typeAlias alias="SearchCondition" type="com.fastcampus.comicbookrental.dto.SearchCondition"/>
 	</typeAliases>
 </configuration>
