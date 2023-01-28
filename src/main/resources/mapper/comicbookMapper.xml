@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.fastcampus.comicbookrental.dao.ComicbookMapper">
+<mapper namespace="com.fastcampus.comicbookrental.repository.ComicbookMapper">
     <select id="count" resultType="int">
         <include refid="selectCountFromComicbook"></include>
     </select>
@@ -99,6 +99,7 @@
     </select>
 
     <!-- 동적쿼리는 직접 작성하기 전에 미리 조건식에 해당하는 식들을 테스트 해본다음에 동적쿼리를 추가하는 방식으로 작성한다.-->
+
 
 
 </mapper>

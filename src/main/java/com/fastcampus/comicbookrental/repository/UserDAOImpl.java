@@ -13,7 +13,7 @@ public class UserDAOImpl implements UserDAO {
     SqlSession session;
 
     //mapper 네임스페이스 지정 sql id을 뒤에 추가하기 위해 마지막에 '.'
-    String namespace="com.fastcampus.comicbookrental.dao.UserMapper.";
+    String namespace="com.fastcampus.comicbookrental.repository.UserMapper.";
 
     @Override
     public UserDTO selectUser(String id) throws Exception {
