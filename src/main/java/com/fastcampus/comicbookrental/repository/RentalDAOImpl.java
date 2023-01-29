@@ -1,5 +1,6 @@
 package com.fastcampus.comicbookrental.repository;
 
+import com.fastcampus.comicbookrental.dto.ComicbookDTO;
 import com.fastcampus.comicbookrental.dto.RentalDTO;
 import com.fastcampus.comicbookrental.dto.SearchCondition;
 import org.apache.ibatis.session.SqlSession;
@@ -42,8 +43,11 @@ public class RentalDAOImpl implements RentalDAO {
     } // int delete(String statement, Object parameter)
 
     @Override
-    public int insert(RentalDTO dto) throws Exception {
-        return session.insert(namespace+"insert", dto);
+    public int insert(ComicbookDTO dto, String id) throws Exception {
+        Map map = new HashMap();
+        map.put("cno", dto.getCno());
+        map.put("id", id);
+        return session.insert(namespace+"insert", map);
     } // int insert(String statement, Object parameter)
 
     @Override

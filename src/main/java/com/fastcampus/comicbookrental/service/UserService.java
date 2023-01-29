@@ -13,15 +13,14 @@ public interface UserService {
     String userSave(@Valid UserDTO user, BindingResult result) throws Exception;
 
     //회원 추가
-    int userAdd(UserDTO dto, String isAdmin) throws Exception;
-
+    int userAdd(@Valid UserDTO user, BindingResult result, String isAdmin) throws Exception;
     //회원 삭제
     int userRemove(String id, String isAdmin) throws Exception;
 
     //(1) 관리자 이거나 본인 여부 확인
     //(2) 읽기, 수정 페이지 함께 사용
     //회원 정보 수정
-    int userModify(UserDTO userDTO, String isAdmin) throws Exception;
+    int userModify(@Valid UserDTO userDTO,BindingResult result, String isAdmin) throws Exception;
 
     int getCount() throws Exception;
 

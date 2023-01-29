@@ -1,5 +1,6 @@
 package com.fastcampus.comicbookrental.repository;
 
+import com.fastcampus.comicbookrental.dto.ComicbookDTO;
 import com.fastcampus.comicbookrental.dto.RentalDTO;
 import com.fastcampus.comicbookrental.dto.SearchCondition;
 
@@ -20,7 +21,7 @@ public interface RentalDAO {
     int delete(RentalDTO dto) throws Exception // int delete(String statement, Object parameter)
     ;
 
-    int insert(RentalDTO dto) throws Exception // int insert(String statement, Object parameter)
+    int insert(ComicbookDTO dto, String id) throws Exception // int insert(String statement, Object parameter)
     ;
 
 

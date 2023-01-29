@@ -48,11 +48,11 @@ public class RentalServiceImplTest {
         System.out.println("comicbookDTO.getQuantity() = " + comicbookDTO.getQuantity());
 
         RentalDTO rentalDTO = new RentalDTO(comicbookDTO.getCno(), userDTO.getId(), new Date());
-        rowCnt=rentalDAO.insert(rentalDTO);
+        rowCnt=rentalDAO.insert(comicbookDTO, userDTO.getId());
         assertTrue(rowCnt==1);
         Integer rno = rentalDAO.selectAll().get(0).getRno();
         rentalDTO.setRno(rno);
-        rentalService.rentalComicbook(rentalDTO);
+        rentalService.rentalComicbook(comicbookDTO, userDTO.getId());
     }
 
     @Test

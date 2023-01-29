@@ -99,7 +99,7 @@
 
     <input name="id" type="text" value="<c:out value='${userDTO.id}'></c:out>" placeholder="아이디를 입력해 주세요."${mode=="new" ? "" : "readonly='readonly'"}><br>
 <%--    <td class="regdate"><fmt:formatDate value="${userDTO.birth}" pattern="yyyy-MM-dd" type="date"/></td>--%>
-    <input name="birth" type="text" value="<fmt:formatDate value="${userDTO.birth}" pattern="yyyy-MM-dd" type="date"/>" placeholder="생년월일을 입력해 주세요."${mode=="new" ? "" : "readonly='readonly'"}><br>
+    <input name="birth" type="text" value="<fmt:formatDate value='${userDTO.birth}' pattern="yyyy-MM-dd" type="date"/>" placeholder="생년월일을 입력해 주세요."${mode=="new" ? "" : "readonly='readonly'"}><br>
     <input name="email" type="text" value="<c:out value='${userDTO.email}'></c:out>" placeholder="이메일을 입력해 주세요."${mode=="new" ? "" : "readonly='readonly'"}><br>
     <div class="sex-chk">
       <label><input type="radio" name="sex" value="true" checked="checked"/>남</label>

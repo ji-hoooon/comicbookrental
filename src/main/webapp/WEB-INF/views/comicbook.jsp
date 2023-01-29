@@ -90,6 +90,7 @@
   let msg = "${msg}";
   if(msg=="WRT_ERR") alert("만화책 등록에 실패하였습니다. 다시 시도해 주세요.");
   if(msg=="MOD_ERR") alert("만화책 수정에 실패하였습니다. 다시 시도해 주세요.");
+  if(msg=="Rental_ERR") alert("대여중인 마화책 반납 후 대여해주세요.");
 </script>
 <div class="container">
   <h2 class="writing-header">만화책 ${mode=="new" ? "등록" : "정보"}</h2>
@@ -111,6 +112,12 @@
       </c:if>
     </c:if>
     <button type="button" id="listBtn" class="btn btn-list"><i class="fa fa-bars"></i> 목록</button>
+    <c:if test="${comicbookDTO.quantity eq 0}">
+      <button type="button" id="rentalBtn" class="btn btn-list"></i>대여하기</button>
+    </c:if>
+<%--    <c:if test="${comicbookDTO.quantity eq 0}">--%>
+<%--      <button type="button" id="" class="btn btn-list"></i>대여중</button>--%>
+<%--    </c:if>--%>
   </form>
 </div>
 <script>
@@ -187,6 +194,15 @@
 
     $("#listBtn").on("click", function(){
       location.href="<c:url value='/comicbook/list${searchCondition.queryString}'/>";
+    });
+
+    $("#rentalBtn").on("click", function(){
+      if(!confirm("대여하시겠습니까?")) return;
+
+      let form = $("#form");
+      form.attr("action", "<c:url value='/comicbook/rental'/>");
+      form.attr("method", "post");
+      form.submit();
     });
   });
 </script>

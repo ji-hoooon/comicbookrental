@@ -38,9 +38,23 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int userAdd(UserDTO dto, String isAdmin) throws Exception {
+    public int userAdd(@Valid UserDTO user, BindingResult result, String isAdmin) throws Exception {
         if(!isAdmin.equals("true")) throw new Exception();
-        return userDAO.insertUser(dto);
+        int rowCnt=0;
+        // User객체를 검증한 결과 에러가 있으면, registerForm을 이용해서 에러를 보여줘야 함.
+        if(!result.hasErrors()) {
+            // 2. DB에 신규회원 정보를 저장
+            rowCnt = userDAO.insertUser(user);
+
+            if(rowCnt==FAIL) {
+                throw new Exception();
+            }
+            //개선해야하는 사항
+            //1. 로그인상태유지하기
+            //2. 뒤로가기하면 정보지운상태보여주기
+            //3. id랑 이메일 중복체크하기
+        }
+        return rowCnt;
     }
 
     //회원 삭제
@@ -53,7 +67,7 @@ public class UserServiceImpl implements UserService {
     //(2) 읽기, 수정 페이지 함께 사용
     //회원 정보 수정
     @Override
-    public int userModify(UserDTO userDTO, String isAdmin) throws Exception {
+    public int userModify(@Valid UserDTO userDTO,BindingResult result, String isAdmin) throws Exception {
         if(!isAdmin.equals("true")) throw new Exception();
         return userDAO.updateUser(userDTO);
     }

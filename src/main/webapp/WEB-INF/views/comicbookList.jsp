@@ -209,7 +209,7 @@
         <input type="text" name="keyword" class="search-input" type="text" value="${ph.sc.keyword}" placeholder="검색어를 입력해주세요">
         <input type="submit" class="search-button" value="검색">
       </form>
-    <c:if test="${isAdmin eq 'true'} && ${mode ne 'new'}">
+    <c:if test="${isAdmin eq 'true'}">
     <button id="writeBtn" class="btn-write" onclick="location.href='<c:url value="/comicbook/write"/>'"><i class="fa fa-pencil"></i> 만화책 추가</button>
     </c:if>
     </div>

@@ -35,15 +35,7 @@ public class ComicbookServiceImpl implements ComicbookService {
         return comicbookDAO.insert(comicbookDTO);
     }
 
-    @Override
-    public List<ComicbookDTO> getList() throws Exception {
-        return comicbookDAO.selectAll();
-    }
 
-    @Override
-    public List<ComicbookDTO> getPage(Map map) throws Exception {
-        return comicbookDAO.selectPage(map);
-    }
 
     @Override
     public ComicbookDTO read(Integer cno) throws Exception {
@@ -67,5 +59,14 @@ public class ComicbookServiceImpl implements ComicbookService {
     @Override
     public List<ComicbookDTO> getSearchResultPage(SearchCondition sc) throws Exception {
         return comicbookDAO.searchSelectPage(sc);
+    }
+    @Override
+    public List<ComicbookDTO> getList() throws Exception {
+        return comicbookDAO.selectAll();
+    }
+
+    @Override
+    public List<ComicbookDTO> getPage(Map map) throws Exception {
+        return comicbookDAO.selectPage(map);
     }
 }

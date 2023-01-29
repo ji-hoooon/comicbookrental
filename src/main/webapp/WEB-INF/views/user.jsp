@@ -99,7 +99,7 @@
 
     <input name="id" type="text" value="<c:out value='${userDTO.id}'></c:out>" placeholder="아이디를 입력해 주세요."${mode=="new" ? "" : "readonly='readonly'"}><br>
 <%--    <td class="regdate"><fmt:formatDate value="${userDTO.birth}" pattern="yyyy-MM-dd" type="date"/></td>--%>
-    <input name="birth" type="text" value="<fmt:formatDate value="${userDTO.birth}" pattern="yyyy-MM-dd" type="date"/>" placeholder="생년월일을 입력해 주세요."${mode=="new" ? "" : "readonly='readonly'"}><br>
+    <input name="birth" type="text" value="<fmt:formatDate value='${userDTO.birth}' pattern="yyyy-MM-dd" type="date"/>" placeholder="생년월일을 입력해 주세요."${mode=="new" ? "" : "readonly='readonly'"}><br>
     <input name="email" type="text" value="<c:out value='${userDTO.email}'></c:out>" placeholder="이메일을 입력해 주세요."${mode=="new" ? "" : "readonly='readonly'"}><br>
     <div class="sex-chk">
       <label><input type="radio" name="sex" value="true" checked="checked"/>남</label>
@@ -110,11 +110,11 @@
     <input name="name" type="text" value="<c:out value='${userDTO.name}'> </c:out>" placeholder=" 이름을 입력해 주세요." ${mode=="new" ? "" : "readonly='readonly'"}><br>
 
     <c:if test="${mode eq 'new'}">
-      <button type="button" id="writeBtn" class="btn btn-write"><i class="fa fa-pencil"></i> 등록하기</button>
+<%--      <button type="button" id="writeBtn" class="btn btn-write"><i class="fa fa-pencil"></i> 등록하기</button>--%>
     </c:if>
     <c:if test="${mode ne 'new'}" >
       <c:if test="${isAdmin eq 'true'}">
-      <button type="button" id="writeNewBtn" class="btn btn-write"><i class="fa fa-pencil"></i> 사용자 추가</button>
+<%--      <button type="button" id="writeNewBtn" class="btn btn-write"><i class="fa fa-pencil"></i> 사용자 추가</button>--%>
       <button type="button" id="modifyBtn" class="btn btn-modify" ><i class="fa fa-edit"></i> 수정</button>
       <button type="button" id="removeBtn" class="btn btn-remove"><i class="fa fa-trash"></i> 삭제</button>
       </c:if>

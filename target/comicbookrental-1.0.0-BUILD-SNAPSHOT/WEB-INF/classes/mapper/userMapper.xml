@@ -22,9 +22,9 @@
 <!--    String id, Date birth, String email, String tel, String sex, String pwd, String name)-->
     <insert id="insert" parameterType="UserDTO">
         INSERT INTO user
-            (id, birth, email, tel, sex, pwd, name)
+            (id, email, tel, sex, pwd, name)
         VALUES
-            (#{id}, #{birth}, #{email}, #{tel}, #{sex}, #{pwd}, #{name})
+            (#{id},  #{email}, #{tel}, #{sex}, #{pwd}, #{name})
     </insert>
 
     <select id="selectAll" resultType="UserDTO">

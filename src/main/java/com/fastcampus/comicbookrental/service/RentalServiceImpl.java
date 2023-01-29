@@ -2,6 +2,7 @@ package com.fastcampus.comicbookrental.service;
 
 import com.fastcampus.comicbookrental.dto.ComicbookDTO;
 import com.fastcampus.comicbookrental.dto.RentalDTO;
+import com.fastcampus.comicbookrental.dto.SearchCondition;
 import com.fastcampus.comicbookrental.dto.UserDTO;
 import com.fastcampus.comicbookrental.repository.ComicbookDAO;
 import com.fastcampus.comicbookrental.repository.RentalDAO;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class RentalServiceImpl implements RentalService {
@@ -31,7 +33,9 @@ public class RentalServiceImpl implements RentalService {
     //(2) 히스토리에 추가
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public int rentalComicbook(RentalDTO dto) throws Exception {
+    public int rentalComicbook(ComicbookDTO dto, String id) throws Exception {
+        if(rentalDAO.selectAllWithId(id).size()>0) throw new Exception();
+
         //(1) 대여
         Integer cno = dto.getCno();
         ComicbookDTO comicbookDTO = comicbookDAO.select(cno);
@@ -44,11 +48,14 @@ public class RentalServiceImpl implements RentalService {
         int rowCnt= comicbookDAO.update(comicbookDTO);
         if(rowCnt!=1) throw new Exception();
 
-        rowCnt = rentalDAO.insert(dto);
+        rowCnt = rentalDAO.insert(dto, id);
         if(rowCnt!=1) throw new Exception();
 
+        Integer rno = rentalDAO.selectAll().get(0).getRno();
+        RentalDTO rentalDTO=rentalDAO.select(rno);
+
         //(2) 히스토리에 추가
-        rowCnt = rentalDAO.addRentalHistory(dto);
+        rowCnt = rentalDAO.addRentalHistory(rentalDTO);
         if(rowCnt!=1) throw new Exception();
 
         return rowCnt;
@@ -95,5 +102,24 @@ public class RentalServiceImpl implements RentalService {
         if(!rentalDTO.getId().equals(id) ||!isAdmin.equals("true") ) throw new Exception();
 
         return rentalDTO;
+    }
+
+    @Override
+    public int getSearchResultCnt(SearchCondition sc) throws Exception {
+        return rentalDAO.searchResultCnt(sc);
+    }
+
+    @Override
+    public List<RentalDTO> getSearchResultPage(SearchCondition sc) throws Exception {
+        return rentalDAO.searchSelectPage(sc);
+    }
+    @Override
+    public List<RentalDTO> getList() throws Exception {
+        return rentalDAO.selectAll();
+    }
+
+    @Override
+    public List<RentalDTO> getPage(Map map) throws Exception {
+        return rentalDAO.selectPage(map);
     }
 }

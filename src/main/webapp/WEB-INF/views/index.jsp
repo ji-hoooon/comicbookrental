@@ -59,7 +59,7 @@
             //하지만, ajax에서 전달하기 위해서는 직접 추가해야 한다.
             url:'/comicbookrental/rentals?id='+id,
             headers:{"content-type": "application/json"},
-            //data: "json" //json 사용시 생략 가능
+            // data: JSON.stringify(result)
             //성공하면 json문자열인 result를 문자열을 html로 만드는 함수를 이용해 html로 만들고, 해당 html이 id가 rentalList인 곳에 넣는다.
             success:function (result){
                 // alert(result);

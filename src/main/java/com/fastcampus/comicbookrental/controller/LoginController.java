@@ -74,12 +74,12 @@ public class LoginController {
 
         try {
             user = userDao.selectUser(id);
-            Date date = new Date();
-            if(date.getYear()- user.getBirth().getYear()>=20){
-                session.setAttribute("isAdult", "true");
-            }else{
-                session.setAttribute("isAdult", "false");
-            }
+//            Date date = new Date();
+//            if(date.getYear()- user.getBirth().getYear()>=20){
+//                session.setAttribute("isAdult", "true");
+//            }else{
+//                session.setAttribute("isAdult", "false");
+//            }
             if(user.isIsadmin()==true)
                 session.setAttribute("isAdmin", "true");
             else{

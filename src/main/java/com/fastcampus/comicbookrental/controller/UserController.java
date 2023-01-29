@@ -7,11 +7,13 @@ import com.fastcampus.comicbookrental.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -29,13 +31,14 @@ public class UserController {
     }
 
     @PostMapping("/modify")
-    public String modify(UserDTO userDTO, HttpSession session, Model m, RedirectAttributes rattr){
+    public String modify(@Valid UserDTO userDTO, BindingResult result, HttpSession session, Model m, RedirectAttributes rattr){
+        System.out.println("userDTO = " + userDTO);
         //관리자인지 정보를 얻기 위한 문자열
         String isAdmin = (String) session.getAttribute("isAdmin");
         if (!isAdmin.equals("true"))
             return "redirect:/";  // 관리자가 아니면 홈 화면으로 이동
         try {
-            int rowCnt =userService.userModify(userDTO, isAdmin);
+            int rowCnt=userService.userModify(userDTO, result, isAdmin);
 
             //DB에 제대로 등록되었는지 확인
             if(rowCnt!=1){
@@ -91,14 +94,15 @@ public class UserController {
     }
 
     @PostMapping("/write")
-    public String write(UserDTO userDTO, HttpSession session, Model m, RedirectAttributes rattr){
+    public String write(@Valid UserDTO userDTO,BindingResult result, HttpSession session, Model m, RedirectAttributes rattr){
+        System.out.println("userDTO = " + userDTO);
         //등록하는 사용자가 관리자인지 얻기 위한 문자열
         System.out.println("관리자가 사용자 추가");
         String isAdmin = (String) session.getAttribute("isAdmin");
         if (!isAdmin.equals("true"))
             return "redirect:/";  // 관리자가 아니면 홈 화면으로 이동
         try {
-            int rowCnt =userService.userAdd(userDTO, isAdmin);
+            int rowCnt =userService.userAdd(userDTO, result, isAdmin);
 
             //DB에 제대로 등록되었는지 확인
             if(rowCnt!=1){

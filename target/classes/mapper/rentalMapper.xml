@@ -21,9 +21,9 @@
 
     <insert id="insert" parameterType="RentalDTO">
         INSERT INTO rental
-            (cno, due_date, id, rental_date)
+            (cno, due_date, id)
         VALUES
-            (#{cno}, #{due_date}, #{id}, #{rental_date})
+            (#{cno}, #{due_date}, #{id})
     </insert>
 
     <select id="selectAll" resultType="RentalDTO">

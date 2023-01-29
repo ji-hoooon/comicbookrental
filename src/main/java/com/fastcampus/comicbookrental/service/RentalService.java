@@ -1,16 +1,19 @@
 package com.fastcampus.comicbookrental.service;
 
+import com.fastcampus.comicbookrental.dto.ComicbookDTO;
 import com.fastcampus.comicbookrental.dto.RentalDTO;
+import com.fastcampus.comicbookrental.dto.SearchCondition;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 public interface RentalService {
     //대여
     //(1) 대여
     //(2) 히스토리에 추가
     @Transactional(rollbackFor = Exception.class)
-    int rentalComicbook(RentalDTO dto) throws Exception;
+    int rentalComicbook(ComicbookDTO dto, String id) throws Exception;
 
     //반납
     //(1) 반납
@@ -22,4 +25,9 @@ public interface RentalService {
 
     List<RentalDTO> getRentalListWithId(String id) throws Exception;
     RentalDTO getDTO(Integer rno,String id, String isAdmin) throws Exception;
-}
+    int getSearchResultCnt(SearchCondition sc) throws Exception ;
+         List<RentalDTO> getSearchResultPage(SearchCondition sc) throws Exception;
+             List<RentalDTO> getList() throws Exception ;
+                 List<RentalDTO> getPage(Map map) throws Exception;
+
+    }
