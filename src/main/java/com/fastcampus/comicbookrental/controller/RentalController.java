@@ -1,6 +1,8 @@
 package com.fastcampus.comicbookrental.controller;
 
+import com.fastcampus.comicbookrental.dto.ComicbookDTO;
 import com.fastcampus.comicbookrental.dto.RentalDTO;
+import com.fastcampus.comicbookrental.service.ComicbookService;
 import com.fastcampus.comicbookrental.service.RentalService;
 import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,8 @@ import java.util.List;
 public class RentalController {
     @Autowired
     RentalService service;
+    @Autowired
+    ComicbookService comicbookService;
 
     // 지정된 대여한 만화책을 삭제하는 메서드로 URI로 작성되었으므로 {}으로 감싸줘야한다.
     @DeleteMapping("/rentals/{rno}")  // DELETE /rentals/1?id=id  <-- 삭제할 대여한 만화책 번호
