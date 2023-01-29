@@ -23,6 +23,7 @@ public interface RentalDAO {
     int insert(RentalDTO dto) throws Exception // int insert(String statement, Object parameter)
     ;
 
+
     List<RentalDTO> selectAll() throws Exception // List<E> selectList(String statement)
     ;
 

@@ -22,8 +22,10 @@ public interface ComicbookDAO {
 
     int insert(ComicbookDTO dto) throws Exception // int insert(String statement, Object parameter)
     ;
+    int insertWithQuantity(ComicbookDTO dto) throws Exception;
 
-    List<ComicbookDTO> selectAll() throws Exception // List<E> selectList(String statement)
+
+        List<ComicbookDTO> selectAll() throws Exception // List<E> selectList(String statement)
     ;
 
     List<ComicbookDTO> selectPage(Map map) throws Exception // List<E> selectList(String statement, Object parameter)

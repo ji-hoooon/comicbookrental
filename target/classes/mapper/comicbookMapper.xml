@@ -26,6 +26,13 @@
             (#{title}, #{publisher}, #{writer})
     </insert>
 
+    <insert id="insertWithQuantity" parameterType="ComicbookDto">
+        INSERT INTO comicbook
+            (title, publisher, writer, quantity)
+        VALUES
+            (#{title}, #{publisher}, #{writer}, #{quantity})
+    </insert>
+
     <select id="selectAll" resultType="ComicbookDto">
         SELECT cno, title, publisher, writer, view_cnt, reg_date
         FROM comicbook

@@ -17,10 +17,18 @@ public class ComicbookDTO {
     private int view_cnt;
     private Date reg_date;
 
+    public ComicbookDTO(){}
     public ComicbookDTO(String title, String writer, String publisher) {
         this.title = title;
         this.writer = writer;
         this.publisher = publisher;
 //        this.release = release;
+    }
+
+    public ComicbookDTO(String title, String writer, String publisher, int quantity) {
+        this.title = title;
+        this.writer = writer;
+        this.publisher = publisher;
+        this.quantity = quantity;
     }
 }

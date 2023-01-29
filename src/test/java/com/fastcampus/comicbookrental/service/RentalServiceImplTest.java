@@ -37,8 +37,8 @@ public class RentalServiceImplTest {
         int rowCnt=userDAO.insertUser(userDTO);
         assertTrue(rowCnt==1);
 
-        ComicbookDTO comicbookDTO = new ComicbookDTO("title", "no content", "asdf" );
-        rowCnt=comicbookDAO.insert(comicbookDTO);
+        ComicbookDTO comicbookDTO = new ComicbookDTO("title", "no content", "asdf" ,1);
+        rowCnt=comicbookDAO.insertWithQuantity(comicbookDTO);
         assertTrue(rowCnt==1);
 
         Integer cno = comicbookDAO.selectAll().get(0).getCno();

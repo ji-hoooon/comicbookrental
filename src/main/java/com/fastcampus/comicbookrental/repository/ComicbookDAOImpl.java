@@ -46,6 +46,10 @@ public class ComicbookDAOImpl implements ComicbookDAO {
     public int insert(ComicbookDTO dto) throws Exception {
         return session.insert(namespace+"insert", dto);
     } // int insert(String statement, Object parameter)
+    @Override
+    public int insertWithQuantity(ComicbookDTO dto) throws Exception {
+        return session.insert(namespace+"insertWithQuantity", dto);
+    } // int insert(String statement, Object parameter)
 
     @Override
     public List<ComicbookDTO> selectAll() throws Exception {
