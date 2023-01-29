@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.List;
 
 import static org.junit.Assert.*;
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -28,6 +29,7 @@ public class RentalServiceImplTest {
     @Autowired
     RentalService rentalService;
     @Test
+    @Transactional(rollbackFor = Exception.class)
     public void rentalComicbook() throws Exception {
         rentalDAO.deleteAll();
         comicbookDAO.deleteAll();
@@ -43,11 +45,12 @@ public class RentalServiceImplTest {
 
         Integer cno = comicbookDAO.selectAll().get(0).getCno();
         comicbookDTO.setCno(cno);
+        System.out.println("comicbookDTO.getQuantity() = " + comicbookDTO.getQuantity());
 
         RentalDTO rentalDTO = new RentalDTO(comicbookDTO.getCno(), userDTO.getId(), new Date());
         rowCnt=rentalDAO.insert(rentalDTO);
         assertTrue(rowCnt==1);
-        Integer rno = comicbookDAO.selectAll().get(0).getCno();
+        Integer rno = rentalDAO.selectAll().get(0).getRno();
         rentalDTO.setRno(rno);
         rentalService.rentalComicbook(rentalDTO);
     }
@@ -55,5 +58,16 @@ public class RentalServiceImplTest {
     @Test
     public void returnComicbook() {
         rentalDAO.deleteAll();
+    }
+
+    @Test
+    public void getRentalListWithId() throws Exception {
+        List<RentalDTO> list=rentalService.getRentalListWithId("asdf");
+
+        for(RentalDTO dto : list){
+
+            System.out.println("dto = " + dto);
+        }
+
     }
 }

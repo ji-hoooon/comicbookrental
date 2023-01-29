@@ -7,6 +7,7 @@
 	<typeAliases>
 		<typeAlias alias="UserDTO" type="com.fastcampus.comicbookrental.dto.UserDTO"/>
 		<typeAlias alias="ComicbookDTO" type="com.fastcampus.comicbookrental.dto.ComicbookDTO"/>
+		<typeAlias alias="RentalDTO" type="com.fastcampus.comicbookrental.dto.RentalDTO"/>
 		<typeAlias alias="SearchCondition" type="com.fastcampus.comicbookrental.dto.SearchCondition"/>
 	</typeAliases>
 </configuration>

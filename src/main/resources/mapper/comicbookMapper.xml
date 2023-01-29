@@ -19,21 +19,21 @@
         DELETE FROM comicbook WHERE cno = #{cno}
     </delete>
 
-    <insert id="insert" parameterType="ComicbookDto">
+    <insert id="insert" parameterType="ComicbookDTO">
         INSERT INTO comicbook
             (title, publisher, writer)
         VALUES
             (#{title}, #{publisher}, #{writer})
     </insert>
 
-    <insert id="insertWithQuantity" parameterType="ComicbookDto">
+    <insert id="insertWithQuantity" parameterType="ComicbookDTO">
         INSERT INTO comicbook
             (title, publisher, writer, quantity)
         VALUES
             (#{title}, #{publisher}, #{writer}, #{quantity})
     </insert>
 
-    <select id="selectAll" resultType="ComicbookDto">
+    <select id="selectAll" resultType="ComicbookDTO">
         SELECT cno, title, publisher, writer, quantity,view_cnt, reg_date
         FROM comicbook
         ORDER BY reg_date DESC, cno DESC
@@ -48,18 +48,18 @@
         FROM comicbook
     </sql>
 
-    <select id="select" parameterType="int" resultType="ComicbookDto">
+    <select id="select" parameterType="int" resultType="ComicbookDTO">
         <include refid="selectFromComicbook"/>
         WHERE cno = #{cno}
     </select>
 
-    <select id="selectPage" parameterType="map" resultType="ComicbookDto">
+    <select id="selectPage" parameterType="map" resultType="ComicbookDTO">
         <include refid="selectFromComicbook"/>
         ORDER BY reg_date DESC, cno DESC
         LIMIT #{offset}, #{pageSize}
     </select>
 
-    <update id="update" parameterType="ComicbookDto">
+    <update id="update" parameterType="ComicbookDTO">
         UPDATE comicbook
         SET   title = #{title}
           , writer = #{writer}
@@ -91,7 +91,7 @@
     <!-- 검색 기능 추가-->
     <!-- 파라미터 타입을 SearchCondition 객체로 받아서 옵션을 넣는다.-->
 <!--    SearchCondition을 패키지명 없이 사용하기 위해 config에서 별명 추가-->
-    <select id="searchSelectPage" parameterType="SearchCondition" resultType="ComicbookDto">
+    <select id="searchSelectPage" parameterType="SearchCondition" resultType="ComicbookDTO">
         <include refid="selectFromComicbook"/>
         where true
         <include refid="searchCondition"></include>

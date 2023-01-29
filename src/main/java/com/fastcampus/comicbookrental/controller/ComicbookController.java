@@ -37,7 +37,8 @@ public class ComicbookController {
     public String modify(ComicbookDTO comicbookDTO, HttpSession session, Model m, RedirectAttributes rattr){
         //관리자인지 정보를 얻기 위한 문자열
         String isAdmin = (String) session.getAttribute("isAdmin");
-
+        if (!isAdmin.equals("true"))
+            return "redirect:/";  // 관리자가 아니면 홈 화면으로 이동
         try {
             int rowCnt =comicbookService.modify(comicbookDTO, isAdmin);
 
@@ -68,6 +69,8 @@ public class ComicbookController {
     public String write(ComicbookDTO comicbookDTO, HttpSession session, Model m, RedirectAttributes rattr){
         //등록하는 사용자가 관리자인지 얻기 위한 문자열
         String isAdmin = (String) session.getAttribute("isAdmin");
+        if (!isAdmin.equals("true"))
+            return "redirect:/";  // 관리자가 아니면 홈 화면으로 이동
         try {
             int rowCnt =comicbookService.write(comicbookDTO, isAdmin);
 
@@ -92,6 +95,8 @@ public class ComicbookController {
     public String remove(HttpSession session, Integer cno, Integer page, Integer pageSize, Model m, RedirectAttributes rattr){
         //HttpSession으로 세션 정보가져와서, 속성값인 id를 String으로 저장
        String isAdmin=(String)session.getAttribute("isAdmin");
+        if (!isAdmin.equals("true"))
+            return "redirect:/";  // 관리자가 아니면 홈 화면으로 이동
         try {
             //현재 페이지 정보와 페이지 크기 정보 전달하면, 리다이렉트시 쿼리스트링으로 자동생성
             m.addAttribute("page", page);

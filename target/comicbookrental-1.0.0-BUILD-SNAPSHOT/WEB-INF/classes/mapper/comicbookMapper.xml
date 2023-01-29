@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.fastcampus.comicbookrental.dao.ComicbookMapper">
+<mapper namespace="com.fastcampus.comicbookrental.repository.ComicbookMapper">
     <select id="count" resultType="int">
         <include refid="selectCountFromComicbook"></include>
     </select>
@@ -19,15 +19,22 @@
         DELETE FROM comicbook WHERE cno = #{cno}
     </delete>
 
-    <insert id="insert" parameterType="ComicbookDto">
+    <insert id="insert" parameterType="ComicbookDTO">
         INSERT INTO comicbook
             (title, publisher, writer)
         VALUES
             (#{title}, #{publisher}, #{writer})
     </insert>
 
-    <select id="selectAll" resultType="ComicbookDto">
-        SELECT cno, title, publisher, writer, view_cnt, reg_date
+    <insert id="insertWithQuantity" parameterType="ComicbookDTO">
+        INSERT INTO comicbook
+            (title, publisher, writer, quantity)
+        VALUES
+            (#{title}, #{publisher}, #{writer}, #{quantity})
+    </insert>
+
+    <select id="selectAll" resultType="ComicbookDTO">
+        SELECT cno, title, publisher, writer, quantity,view_cnt, reg_date
         FROM comicbook
         ORDER BY reg_date DESC, cno DESC
     </select>
@@ -41,18 +48,18 @@
         FROM comicbook
     </sql>
 
-    <select id="select" parameterType="int" resultType="ComicbookDto">
+    <select id="select" parameterType="int" resultType="ComicbookDTO">
         <include refid="selectFromComicbook"/>
         WHERE cno = #{cno}
     </select>
 
-    <select id="selectPage" parameterType="map" resultType="ComicbookDto">
+    <select id="selectPage" parameterType="map" resultType="ComicbookDTO">
         <include refid="selectFromComicbook"/>
         ORDER BY reg_date DESC, cno DESC
         LIMIT #{offset}, #{pageSize}
     </select>
 
-    <update id="update" parameterType="ComicbookDto">
+    <update id="update" parameterType="ComicbookDTO">
         UPDATE comicbook
         SET   title = #{title}
           , writer = #{writer}
@@ -84,7 +91,7 @@
     <!-- 검색 기능 추가-->
     <!-- 파라미터 타입을 SearchCondition 객체로 받아서 옵션을 넣는다.-->
 <!--    SearchCondition을 패키지명 없이 사용하기 위해 config에서 별명 추가-->
-    <select id="searchSelectPage" parameterType="SearchCondition" resultType="ComicbookDto">
+    <select id="searchSelectPage" parameterType="SearchCondition" resultType="ComicbookDTO">
         <include refid="selectFromComicbook"/>
         where true
         <include refid="searchCondition"></include>
@@ -99,6 +106,7 @@
     </select>
 
     <!-- 동적쿼리는 직접 작성하기 전에 미리 조건식에 해당하는 식들을 테스트 해본다음에 동적쿼리를 추가하는 방식으로 작성한다.-->
+
 
 
 </mapper>

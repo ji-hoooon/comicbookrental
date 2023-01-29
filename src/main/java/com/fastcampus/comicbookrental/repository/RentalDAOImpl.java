@@ -87,4 +87,9 @@ public class RentalDAOImpl implements RentalDAO {
     public int modifyRentalHistory(RentalDTO dto){
         return session.update(namespace+"updateRentalHistory", dto);
     }
+
+    @Override
+    public List<RentalDTO> selectAllWithId(String id){
+        return session.selectList(namespace+"selectAllWithId", id);
+    }
 }

@@ -182,7 +182,7 @@
       <li><a href="<c:url value='/register/add'/>">Sign in</a></li>
     </c:if>
     <c:if test="${isAdmin=='true'}">
-    <li><a href="<c:url value='/admin'/>">Admin</a></li>
+    <li><a href="<c:url value='/admin/list'/>">Admin</a></li>
     </c:if>
   </ul>
 </div>

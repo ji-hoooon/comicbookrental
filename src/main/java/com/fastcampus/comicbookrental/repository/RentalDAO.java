@@ -44,6 +44,6 @@ public interface RentalDAO {
     ;
     int addRentalHistory(RentalDTO dto) throws Exception;
     int modifyRentalHistory(RentalDTO dto) throws Exception;
-
+    List<RentalDTO> selectAllWithId(String id) throws Exception;
 
     }

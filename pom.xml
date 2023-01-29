@@ -192,19 +192,7 @@
 			<version>1.16</version>
 		</dependency>
 
-		<!--		&lt;!&ndash; MyBatis 의존성 추가&ndash;&gt;-->
-		<!--		&lt;!&ndash; https://mvnrepository.com/artifact/org.mybatis/mybatis &ndash;&gt;-->
-		<!--		<dependency>-->
-		<!--			<groupId>org.mybatis</groupId>-->
-		<!--			<artifactId>mybatis</artifactId>-->
-		<!--			<version>3.5.9</version>-->
-		<!--		</dependency>-->
-		<!--		&lt;!&ndash; https://mvnrepository.com/artifact/org.mybatis/mybatis-spring &ndash;&gt;-->
-		<!--		<dependency>-->
-		<!--			<groupId>org.mybatis</groupId>-->
-		<!--			<artifactId>mybatis-spring</artifactId>-->
-		<!--			<version>3.0.1</version>-->
-		<!--		</dependency>-->
+
 		<!--ajax를 위한 의존성 추가-->
 		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
 		<dependency>

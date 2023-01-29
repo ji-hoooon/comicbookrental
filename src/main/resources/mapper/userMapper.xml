@@ -49,7 +49,7 @@
 
     <select id="selectPage" parameterType="map" resultType="UserDTO">
         <include refid="selectFromUser"/>
-        ORDER BY reg_date DESC, cno DESC
+        ORDER BY reg_date DESC, uno DESC
         LIMIT #{offset}, #{pageSize}
     </select>
 
@@ -65,36 +65,36 @@
         WHERE id =#{id}
     </update>
 
-<!--<sql id="searchCondition">-->
-<!--    <choose>-->
-<!--        <when test='option=="T"'>-->
-<!--            and title like concat('%', #{keyword}, '%')-->
-<!--        </when>-->
-<!--        <when test='option=="W"'>-->
-<!--            and writer like concat('%', #{keyword}, '%')-->
-<!--        </when>-->
-<!--        <otherwise>-->
-<!--            and title like concat('%', #{keyword}, '%')-->
-<!--            OR content like concat('%', #{keyword}, '%')-->
-<!--        </otherwise>-->
-<!--    </choose>-->
-<!--</sql>-->
-    <!-- 검색 기능 추가-->
-    <!-- 파라미터 타입을 SearchCondition 객체로 받아서 옵션을 넣는다.-->
+<sql id="searchCondition">
+    <choose>
+        <when test='option=="N"'>
+            and name like concat('%', #{keyword}, '%')
+        </when>
+        <when test='option=="id"'>
+            and id like concat('%', #{keyword}, '%')
+        </when>
+        <otherwise>
+            and name like concat('%', #{keyword}, '%')
+            OR id like concat('%', #{keyword}, '%')
+        </otherwise>
+    </choose>
+</sql>
+<!--     검색 기능 추가-->
+<!--     파라미터 타입을 SearchCondition 객체로 받아서 옵션을 넣는다.-->
 <!--    SearchCondition을 패키지명 없이 사용하기 위해 config에서 별명 추가-->
-<!--    <select id="searchSelectPage" parameterType="SearchCondition" resultType="UserDTO">-->
-<!--        <include refid="selectFromUser"/>-->
-<!--        where true-->
-<!--        <include refid="searchCondition"></include>-->
-<!--        ORDER BY reg_date DESC, bno DESC-->
-<!--        LIMIT #{offset}, #{pageSize}-->
-<!--    </select>-->
-<!--&lt;!&ndash;페이징을 하기위해 검색 결과 개수 구하기&ndash;&gt;-->
-<!--    <select id="searchResultCnt" parameterType="SearchCondition" resultType="int">-->
-<!--    <include refid="selectCountFromUser"></include>-->
-<!--        WHERE true-->
-<!--        <include refid="searchCondition"></include>-->
-<!--    </select>-->
+    <select id="searchSelectPage" parameterType="SearchCondition" resultType="UserDTO">
+        <include refid="selectFromUser"/>
+        where true
+        <include refid="searchCondition"></include>
+        ORDER BY reg_date DESC, uno DESC
+        LIMIT #{offset}, #{pageSize}
+    </select>
+<!--페이징을 하기위해 검색 결과 개수 구하기-->
+    <select id="searchResultCnt" parameterType="SearchCondition" resultType="int">
+    <include refid="selectCountFromUser"></include>
+        WHERE true
+        <include refid="searchCondition"></include>
+    </select>
 
     <!-- 동적쿼리는 직접 작성하기 전에 미리 조건식에 해당하는 식들을 테스트 해본다음에 동적쿼리를 추가하는 방식으로 작성한다.-->
 

@@ -13,6 +13,7 @@ public class RentalDTO {
 
     private Date rental_date;
 
+    public RentalDTO(){}
     public RentalDTO(Integer cno, String id, Date rental_date) {
         this.cno = cno;
         this.id = id;
