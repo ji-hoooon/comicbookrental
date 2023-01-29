@@ -8,7 +8,7 @@
 * [구현한 기능 설명](#구현한-기능-설명)<br>
 * [개선해야할 점](#개선해야할-점)<br>
 * [사용한 기술 스택](#사용한-기술-스택)<br>
-
+* [테이블 DDL](#테이블-DDL)<br>
 
 ## 프로젝트 간단 요약
 상용 가능한 만화책 대여 관리 시스템을 만들기 위한 프로젝트
@@ -52,6 +52,61 @@
 * 회원가입시 아이디 중복체크
 * 시간적 제약 때문에 부분적으로 TDD를 이용해 개발 -> 전체적으로 적용해 단계적으로 리팩토링 수행
 
+## 테이블 DDL
+```
+create table comicbook
+(
+    cno       int auto_increment
+        primary key,
+    title     varchar(30)                          not null,
+    writer    varchar(15)                          not null,
+    publisher varchar(15)                          not null,
+    `release` datetime   default CURRENT_TIMESTAMP null,
+    quantity  int        default 1                 null,
+    adult     tinyint(1) default 0                 null,
+    up_date   datetime   default CURRENT_TIMESTAMP null,
+    view_cnt  int        default 0                 null,
+    reg_date  datetime   default CURRENT_TIMESTAMP null
+);
+
+create table rental
+(
+    rno         int auto_increment
+        primary key,
+    due_date    date                               null,
+    cno         int                                not null,
+    id          varchar(15)                        not null,
+    rental_date datetime default CURRENT_TIMESTAMP not null
+);
+
+create table rentalhistory
+(
+    rno         int         not null
+        primary key,
+    cno         int         not null,
+    id          varchar(15) not null,
+    rental_date datetime    not null,
+    return_date datetime    null
+);
+
+create table user
+(
+    uno            int auto_increment
+        primary key,
+    id             varchar(15)                          not null,
+    birth          date                                 null,
+    email          varchar(30)                          not null,
+    tel            varchar(30)                          not null,
+    sex            tinyint(1)                           null,
+    sns            tinyint(1) default 0                 null,
+    isdeniedrental date                                 null,
+    isadmin        tinyint(1) default 0                 null,
+    reg_date       datetime   default CURRENT_TIMESTAMP null,
+    pwd            varchar(15)                          not null,
+    name           varchar(10)                          not null,
+    up_date        datetime   default CURRENT_TIMESTAMP null
+);
+```
 
 ## 사용한 기술 스택
 ![spring](https://img.shields.io/badge/spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white)
