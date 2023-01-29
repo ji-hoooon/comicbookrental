@@ -11,9 +11,11 @@ public class RentalDTO {
     private Integer cno;
     private String id;
 
-    public RentalDTO(Date due_date, Integer cno, String id) {
-        this.due_date = due_date;
+    private Date rental_date;
+
+    public RentalDTO(Integer cno, String id, Date rental_date) {
         this.cno = cno;
         this.id = id;
+        this.rental_date=rental_date;
     }
 }

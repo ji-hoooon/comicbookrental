@@ -28,12 +28,12 @@ public class RentalServiceImpl implements RentalService {
     //(2) 히스토리에 추가
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void rentalComicbook(RentalDTO dto, String id) throws Exception {
+    public void rentalComicbook(RentalDTO dto) throws Exception {
         //(1) 대여
         Integer cno = dto.getCno();
-        ComicbookDTO comicbookDTO = comicbookDAO.select(dto.getRno());
+        ComicbookDTO comicbookDTO = comicbookDAO.select(cno);
         System.out.println("comicbookDTO = " + comicbookDTO);
-        if(comicbookDTO.getQuantity()<1) throw new Exception();
+//        if(comicbookDTO.getQuantity()<1) throw new Exception();
 
         comicbookDTO.setQuantity(comicbookDTO.getQuantity()-1);
         int rowCnt= comicbookDAO.update(comicbookDTO);
@@ -54,7 +54,7 @@ public class RentalServiceImpl implements RentalService {
     //(4) UserDTO에 며칠 연체인지 추가 (due_date -now() or return_date)
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void returnComicbook(RentalDTO dto, String id) throws Exception{
+    public void returnComicbook(RentalDTO dto) throws Exception{
         //(1) 대여
         Integer cno = dto.getCno();
         ComicbookDTO comicbookDTO = comicbookDAO.select(dto.getRno());

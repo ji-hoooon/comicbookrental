@@ -19,7 +19,8 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.List;
-
+//개선해야할 사항
+//로그인 안했을 때, 주소로 직접 들어오는 것 차단 - 필터
 @Controller
 @RequestMapping("/comicbook")
 public class ComicbookController {

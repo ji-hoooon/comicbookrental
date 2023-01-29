@@ -37,5 +37,6 @@
     <h1>로그인한 회원의 경우 홈에서 대여한 만화책을 반납할 수 있어요</h1>
     <h1>Comic 메뉴를 눌러 만화책을 대여할 수 있어요</h1>
 </div>
+<div class="rental_list"></div>
 </body>
 </html>
